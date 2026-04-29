@@ -24,10 +24,10 @@ export const repaymentStatus = [
 ];
 
 export const recentAlerts = [
-  { id: 1, client: 'Maria Santos', message: 'Missed 2nd installment', risk: 'high', days: 12 },
-  { id: 2, client: 'Jose Reyes', message: 'Payment 18 days overdue', risk: 'medium', days: 18 },
-  { id: 3, client: 'Ana Cruz', message: 'Risk score elevated to 82%', risk: 'high', days: 5 },
-  { id: 4, client: 'Pedro Lim', message: 'First late payment detected', risk: 'low', days: 3 },
+  { id: 1, clientId: 1, client: 'Maria Santos', message: 'Missed 2nd installment', risk: 'high', days: 12 },
+  { id: 2, clientId: 2, client: 'Jose Reyes', message: 'Payment 18 days overdue', risk: 'medium', days: 18 },
+  { id: 3, clientId: 3, client: 'Ana Cruz', message: 'Risk score elevated to 82%', risk: 'high', days: 5 },
+  { id: 4, clientId: 4, client: 'Pedro Lim', message: 'First late payment detected', risk: 'low', days: 3 },
 ];
 
 export const interviewQuestions = [

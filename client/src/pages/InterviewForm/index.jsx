@@ -449,7 +449,7 @@ export default function InterviewForm() {
 
   // ─── INTERVIEW ACTIVE STATE ───
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 mx-auto max-w-7xl">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>

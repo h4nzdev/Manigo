@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AreaChart,
   Area,
@@ -35,7 +36,7 @@ import {
   repaymentStatus,
   recentAlerts,
 } from "../../data/mockData";
-import { workflowForAlert, workflows } from "../../data/workflows";
+import { workflows } from "../../data/workflows";
 import WorkflowSuggestion from "../../components/WorkflowSuggestion";
 
 const riskColor = {
@@ -167,19 +168,13 @@ function SmartBanner({ kpi }) {
 
 // ─── Alert item with expandable workflow ───
 function AlertItem({ alert: a }) {
-  const [expanded, setExpanded] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
-  const workflow = workflowForAlert(a.message);
-
-  if (dismissed) return null;
+  const navigate = useNavigate();
 
   return (
     <li className="rounded-xl border border-slate-100 overflow-hidden">
       <button
-        onClick={() => workflow && setExpanded((e) => !e)}
-        className={`w-full flex items-start gap-3 p-2.5 transition-colors text-left ${
-          workflow ? 'hover:bg-slate-50 cursor-pointer' : 'cursor-default'
-        }`}
+        onClick={() => a.clientId && navigate(`/clients/${a.clientId}`)}
+        className="w-full flex items-start gap-3 p-2.5 transition-colors text-left hover:bg-slate-50 cursor-pointer"
       >
         <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold uppercase mt-0.5 shrink-0 ${riskColor[a.risk]}`}>
           {a.risk}
@@ -192,24 +187,11 @@ function AlertItem({ alert: a }) {
           <span className="text-xs text-slate-400 flex items-center gap-1">
             <Clock size={11} />{a.days}d
           </span>
-          {workflow && (
-            <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full transition-colors ${
-              expanded ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600'
-            }`}>
-              {expanded ? 'Hide' : 'Take action'}
-            </span>
-          )}
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+            View Profile
+          </span>
         </div>
       </button>
-
-      {expanded && workflow && (
-        <div className="px-3 pb-3">
-          <WorkflowSuggestion
-            workflow={workflow}
-            onDismiss={() => { setExpanded(false); setDismissed(true); }}
-          />
-        </div>
-      )}
     </li>
   );
 }
@@ -230,7 +212,7 @@ export default function Dashboard() {
     Math.round((kpiData.atRiskLoans / kpiData.activeClients) * 100) || 0;
 
   return (
-    <div className="p-4 space-y-5 mx-auto">
+    <div className="p-4 space-y-5 max-w-7xl mx-auto">
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>

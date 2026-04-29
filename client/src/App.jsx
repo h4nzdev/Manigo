@@ -7,6 +7,7 @@ import InterviewForm from './pages/InterviewForm';
 import Heatmap from './pages/Heatmap';
 import PolicyGuide from './pages/PolicyGuide';
 import Offline from './pages/Offline';
+import ClientProfile from './pages/ClientProfile';
 
 export default function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/heatmap" element={<Heatmap />} />
           <Route path="/policy" element={<PolicyGuide />} />
           <Route path="/offline" element={<Offline isOnline={isOnline} />} />
+          <Route path="/clients/:id" element={<ClientProfile />} />
         </Routes>
       </AppShell>
     </BrowserRouter>

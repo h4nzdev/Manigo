@@ -450,7 +450,7 @@ export default function PolicyGuide() {
   ];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-56px)]">
+    <div className="flex flex-col h-[calc(100vh-56px)] max-w-7xl mx-auto">
       {/* Tab bar */}
       <div className="flex border-b border-slate-200 bg-white shrink-0">
         {[
